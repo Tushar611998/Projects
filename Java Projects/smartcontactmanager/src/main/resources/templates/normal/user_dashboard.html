@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	th:replace="~{/normal/base::layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>User Dashboard</title>
+</head>
+<body>
+	<section>
+
+
+		<div class="card ml-5 mr-5">
+			<div class="cardbody mt-5 mr-5 ml-5">
+
+				<div class="text-center mb-3">
+					<img th:src="@{'/img/'+ ${user.userImage}}" width="250px"
+						height="250px" style="object-fit: cover;border-radius:50px" alt="Profile picture" />
+
+
+				</div>
+				<div class=" container text-center bg-black text-white  " style="border: 1px solid black">
+				<form th:action="@{/user/updateProfile}" method="post" th:object="${user}" enctype="multipart/form-data">
+				<input class="" style="font-size:18px; " name="image" type="file"  />
+				<button type="submit" class="btn ">Change Image</button>
+				</form>
+				</div>
+
+				<div class="ml-5 mr-5 mt-5 mb-3  ">
+					<h1 style="text-align: center; color: green"
+						th:text="'Welcome ' +${user.userName} +'...!!'"></h1>
+					<table class="table mt-5 ml-6 mr-5 text-center">
+
+
+
+						<thead class="mt-5">
+							<tr>
+								<th scope="col">#ID</th>
+								<th scope="col" th:text="${user.userId}"></th>
+
+							</tr>
+						</thead>
+						<thead>
+							<tr>
+								<th scope="col">User Name:</th>
+								<th scope="col" th:text="${user.userName}"></th>
+
+							</tr>
+						</thead>
+						<thead>
+							<tr>
+								<th scope="col">Email Id:</th>
+								<th scope="col" th:text="${user.email}"></th>
+
+							</tr>
+						</thead>
+
+						<thead>
+							<tr>
+								<th scope="col">User Role:</th>
+								<th scope="col" th:text="${user.userrole}"></th>
+
+							</tr>
+							<tr>
+								<th scope="col">User Status:</th>
+								<th scope="col" th:if="${user.enabled}" th:text="Enabled"></th>
+								<th scope="col" th:unless="${user.enabled}" th:text="Disabled"></th>
+							</tr>
+							<tr>
+								<th scope="col">About:</th>
+								<th scope="col" th:text="${user.about}"></th>
+
+							</tr>
+
+
+						</thead>
+
+					</table>
+					<div>
+						<h4>About:</h4>
+
+						<p th:utext="${user.about}"></p>
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+		
+	</section>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+.bg-black{
+	background: teal;
+}
+.banner{
+	width: 100%;
+	height: 93vh;
+	background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("../img/banner.avif");
+	background-size: cover;
+	color: white;
+	
+}
+.bg-s{
+	background: linear-gradient(rgba(225,225,225,0.5),rgba(225,225,225,0.5)),rgba(32,178,170) ;
+}
+.bg-card{
+	background: #e2e2e2;
+}
+.con{
+	background: #e2e2e2;
+	height:100vh;
+}
+
+@media only screen and (max-width: 800px){
+	.sidebar{
+	display:none;
+	width: 60% !important;
+	background: white;
+	height:100%;
+	position:fixed;
+	padding-top:36px;
+	}
+	.content{
+	margin-left:10% !important;
+	}
+}
+
+.sidebar{
+	width:18%;
+	padding-top:36px;
+	height: 100vh;
+	position:absolute;
+	display:fixed;
+	background:white;
+	margin-top: 0px;
+}
+
+
+.sidebar a{
+	display: block;
+	text-decoration: none;
+	color:gray;
+	font-size: 20px;
+	padding:7px 30px;
+}
+
+.sidebar a:hover{
+	background: #e2e2e2;
+}
+.content{
+	margin-left:20%;
+	margin-top: 60px;
+}
+
+.cross{
+	position: absolute;
+	right:0;
+	top:0;
+	
+}
+
+.dropdown{
+	position:absolute;
+	margin-left:60%;
+	display: none;
+}
+.dropdown a{
+	border-bottom: 1px solid yellow;
+	background: teal;
+	color:white;
+}
+.dropdown a:hover{
+	background: lightblue;
+	color:black;
+}
+
+.drop:hover .dropdown{
+	display:block;
+	
+}
+
+.search{
+	position: relative;
+}
+
+.search-container{
+	position: absolute;
+	background:white;
+	display:none;
+}

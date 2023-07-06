@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	th:fragment="layout(title,content)">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+<title th:replace="${title}"></title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<script th:src="@{/js/myjs.js}"></script>
+</head>
+<style>
+
+body{
+background: #e2e2e2;
+}
+.sidebar{
+/* background: #e2e2e2; */
+height:120%;
+}
+</style>
+<body>
+
+
+	<!-- navbar -->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-black">
+		<a class="navbar-brand" href="#">SmartContactManager</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse " id="navbarSupportedContent">
+			<div class="item-group search" style="margin-left: 400px">
+				<form class="form-inline  my-2 my-lg-0">
+					<input onkeyup="search()" id="search-Input"  class="form-control mr-sm-2 " style="border-radius: 20px"
+						type="search" placeholder="Search" aria-label="Search">
+					<!-- <button class="btn btn-outline-light my-2 my-sm-0 " type="submit">Search</button> -->
+				</form>
+				<div class="item-group search-container form-control">
+				<h1>this is search result</h1>
+				</div>
+				
+			</div>
+			<ul class="navbar-nav  ml-auto ">
+
+				<li class="nav-item active"><a class="nav-link" th:href="@{/}">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<!-- <li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li> -->
+
+				<li class="nav-item"><i class="fa fa-user-circle-o text-white"
+					style="font-size: 20px;"></i><a class="nav-link "
+					style="display: inline-block;" th:text="${user.userName}"></a>
+				<!-- <li class="nav-item"><a class="nav-link " th:href="@{/logout}">Logout</a> -->
+
+				</li>
+			</ul>
+
+		</div>
+	</nav>
+	<!-- sidebar -->
+	<div class="con">
+		<div class="sidebar">
+			<i onclick="toggleSidebar()" class="	fa fa-remove cross" style="font-size:20px;padding:5px"></i>
+			<a th:href="@{/}"><i class="	fa fa-home" style="font-size:18px;padding:5px"></i>Home</a> 
+			<a th:href="@{/user/show-contacts/0}"><i class="fa fa-address-book" style="font-size:16px;padding:5px"></i>View Contacts</a> 
+			<a th:href="@{/user/addContact}"><i class="fa fa-plus-square" style="font-size:16px;padding:5px"></i>Add
+				Contact</a>
+				<div class="drop"> 
+			<a  href=""><i class="fa fa-cogs " style="font-size:18px;padding:5px"></i>Settings<i class="fa fa-sign-out" style="font-size:18px;padding:5px; position:absolute;right:0"></i></a>
+			<div class="dropdown">
+			<a href="">link1</a>
+			<a href="">link2</a>
+			<a href="">link3</a>
+			</div> 
+			</div>
+			<a th:href="@{/logout}"><i class="fa fa-user-times" style="font-size:18px;padding:5px"></i>Logout</a>
+
+		</div>
+		
+		<div class="content ">
+		<i onclick="toggleSidebar()" class="bar	fa fa-bars" style="font-size:20px;padding:5px"></i>
+			<div th:replace="${content}"></div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+	
+	function deleteContact(cId){
+	swal({
+		  title: "Are you sure?",
+		  text: "You want to delete the contact..???",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+		    
+			  
+			  window.location="/user/delete/"+cId;
+			  
+			  
+		  } else {
+		    swal("Your contact is safe!");
+		  }
+		});
+	}
+	</script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>
